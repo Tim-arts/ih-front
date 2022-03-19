@@ -1,0 +1,14 @@
+@use '../abstracts/colors' as colors;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: url('../../images/background.jpg') no-repeat center center fixed;
+  color: colors.$white;
+}

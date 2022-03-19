@@ -1,0 +1,16 @@
+@use 'abstracts/colors' as colors;
+
+$header-height: 6.4rem;
+
+header {
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+  height: $header-height;
+}
+
+h1 {
+  margin: 0;
+}
+
+mat-toolbar.mat-toolbar.mat-primary {
+  background-color: transparentize(colors.$primary, .9);
+}
