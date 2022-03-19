@@ -1,0 +1,6 @@
+@use '../abstracts/colors' as colors;
+
+body {
+  background: url('../../assets/images/background.jpg') no-repeat center center fixed;
+  color: colors.$blueish;
+}

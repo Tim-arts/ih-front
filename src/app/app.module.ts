@@ -4,9 +4,17 @@ import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 
+import { SharedModule } from './shared/shared.module'
+import { CalculatorStellarShardsModule } from './calculator-stellar-shards/calculator-stellar-shards.module'
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    CalculatorStellarShardsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
