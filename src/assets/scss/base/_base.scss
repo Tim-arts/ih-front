@@ -1,6 +1,8 @@
 @use '../abstracts/colors' as colors;
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -11,4 +13,8 @@ html {
 body {
   background: url('../../images/background.jpg') no-repeat center center fixed;
   color: colors.$white;
+}
+
+section {
+  margin: 5rem 0;
 }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 
 import { SharedModule } from './shared/shared.module'
-import { CalculatorStellarShardsModule } from './calculator-stellar-shards/calculator-stellar-shards.module'
+import { StellarShardsCalculatorModule } from './features/stellar-shards-calculator/stellar-shards-calculator.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,7 +13,7 @@ import { CalculatorStellarShardsModule } from './calculator-stellar-shards/calcu
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    CalculatorStellarShardsModule,
+    StellarShardsCalculatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

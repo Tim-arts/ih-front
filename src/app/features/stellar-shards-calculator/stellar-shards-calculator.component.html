@@ -1,0 +1,56 @@
+<section class="container">
+  <h1>Stellar Shards Calculator</h1>
+  <p class="mb-5">Complete the fields to automatically calculate the number of stellar shards that you have</p>
+  <form [formGroup]="formControlModel" (ngSubmit)="onSubmit()">
+    <div class="row" formGroupName="staticModel">
+      <div class="col-10 d-flex justify-content-between">
+        <div class="entry d-flex flex-column mx-3">
+          <mat-form-field appearance="fill">
+            <mat-label>V4</mat-label>
+            <input type="number" placeholder="Number" matInput formControlName="V4" (ngModelChange)="onSubmit()">
+          </mat-form-field>
+          <span class="position-relative">{{ formControlModel.value.staticModel.V4 * VxValues.V4 | json }}</span>
+        </div>
+        <div class="entry d-flex flex-column mx-3">
+          <mat-form-field appearance="fill">
+            <mat-label>V3</mat-label>
+            <input type="number" placeholder="Number" matInput formControlName="V3" (ngModelChange)="onSubmit()">
+          </mat-form-field>
+          <span class="position-relative">{{ formControlModel.value.staticModel.V3 * VxValues.V3 | json }}</span>
+        </div>
+        <div class="entry d-flex flex-column mx-3">
+          <mat-form-field appearance="fill">
+            <mat-label>V2</mat-label>
+            <input type="number" placeholder="Number" matInput formControlName="V2" (ngModelChange)="onSubmit()">
+          </mat-form-field>
+          <span class="position-relative">{{ formControlModel.value.staticModel.V2 * VxValues.V2 | json }}</span>
+        </div>
+        <div class="entry d-flex flex-column mx-3">
+          <mat-form-field appearance="fill">
+            <mat-label>V1</mat-label>
+            <input type="number" placeholder="Number" matInput formControlName="V1" (ngModelChange)="onSubmit()">
+          </mat-form-field>
+          <span class="position-relative">{{ formControlModel.value.staticModel.V1 * VxValues.V1 | json }}</span>
+        </div>
+      </div>
+      <div class="col-2 text-center">
+        <button type="button" mat-fab color="primary" aria-label="Example icon button with a delete icon"
+                (click)="addHero()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="row mt-5" formArrayName="dynamicModel">
+      <div class="col-3 mx-3" *ngFor="let alias of dynamicModel.controls; let i = index">
+        <!-- <label for="alias-{{ i }}">Alias:</label>
+        <input id="alias-{{ i }}" type="text" [formControlName]="i"> -->
+
+        <div class="advanced-view">
+          Test
+        </div>
+      </div>
+    </div>
+  </form>
+  <h3 class="mt-5 mb-0">Stellar Shards total: {{ totalStellarShards }}</h3>
+  <h3>Total heroes:</h3>
+</section>

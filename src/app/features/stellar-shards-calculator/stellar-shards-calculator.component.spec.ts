@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { CalculatorStellarShardsComponent } from './calculator-stellar-shards.component'
+import { StellarShardsCalculatorComponent } from './stellar-shards-calculator.component'
 
 describe('CalculatorStellarShardsComponent', () => {
-  let component: CalculatorStellarShardsComponent
-  let fixture: ComponentFixture<CalculatorStellarShardsComponent>
+  let component: StellarShardsCalculatorComponent
+  let fixture: ComponentFixture<StellarShardsCalculatorComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CalculatorStellarShardsComponent],
+      declarations: [StellarShardsCalculatorComponent],
     }).compileComponents()
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalculatorStellarShardsComponent)
+    fixture = TestBed.createComponent(StellarShardsCalculatorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
