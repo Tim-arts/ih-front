@@ -1,29 +1,41 @@
-import { Component, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
+import { Component, ViewChild } from '@angular/core'
+import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms'
 
-import {
-  StaticModel,
-  StellarShardsModel,
-  VxValues,
-} from './stellar-shards-calculator'
+import { StaticModel, StellarCountValues } from './stellar-shards-calculator'
 
 @Component({
   selector: 'app-stellar-shards-calculator',
   templateUrl: './stellar-shards-calculator.component.html',
   styleUrls: ['./stellar-shards-calculator.component.scss'],
 })
-export class StellarShardsCalculatorComponent implements OnInit {
+export class StellarShardsCalculatorComponent {
   formControlModel: FormGroup = this.formBuilder.group({
     staticModel: this.formBuilder.group({
-      V4: 0,
-      V3: 0,
-      V2: 0,
-      V1: 0,
+      V4: null,
+      V3: null,
+      V2: null,
+      V1: null,
     }),
-    dynamicModel: this.formBuilder.array([this.formBuilder.control(0)]),
+    dynamicModel: this.formBuilder.array([
+      this.formBuilder.group({
+        'V0-HP': null,
+        'V0-ATK': null,
+        'V0-HP-ATK': null,
+        'V1-HP': null,
+        'V1-ATK': null,
+        'V1-HP-ATK': null,
+        'V2-HP': null,
+        'V2-ATK': null,
+        'V2-HP-ATK': null,
+        'V3-HP': null,
+        'V3-ATK': null,
+        'V3-SPD': null,
+      }),
+    ]),
   })
-  VxValues = VxValues
-  totalStellarShards: number = 0
+  StellarCountValues = StellarCountValues
+
+  @ViewChild('form', { static: true }) form!: NgForm
 
   get dynamicModel() {
     return this.formControlModel.get('dynamicModel') as FormArray
@@ -31,26 +43,35 @@ export class StellarShardsCalculatorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {
-    console.log(this.formControlModel.value)
-  }
-
-  onSubmit(): void {
-    console.log(this.getTotal(this.formControlModel.value))
-  }
-
   addHero() {
     this.dynamicModel.push(this.formBuilder.control(0))
   }
 
-  getTotal(values: StellarShardsModel): number {
-    return (
-      this.getTotalStatic(values.staticModel) +
-      this.getTotalDynamic(values.dynamicModel)
-    )
+  onSubmit(): void {
+    this.getHeroCount()
+    this.getTotalSS()
   }
 
-  getTotalStatic(values: StaticModel): number {
+  getHeroCount(): number {
+    let count: number = 0
+
+    // Static
+    Object.keys(this.formControlModel.value.staticModel).map((key: string) => {
+      count += this.formControlModel.value.staticModel[key]
+    })
+
+    // Dynamic
+    count += this.formControlModel.value.dynamicModel.length
+
+    return count
+  }
+
+  getTotalSS(): number {
+    return this.getTotalSSStatic() + this.getTotalSSDynamic()
+  }
+
+  getTotalSSStatic(): number {
+    const values: StaticModel = this.formControlModel.value.staticModel
     let value: number = 0
 
     Object.keys(values).map((key: string, index: number) => {
@@ -58,16 +79,16 @@ export class StellarShardsCalculatorComponent implements OnInit {
 
       switch (index) {
         case 0:
-          _value *= this.VxValues.V4
+          _value *= this.StellarCountValues.V4
           break
         case 1:
-          _value *= this.VxValues.V3
+          _value *= this.StellarCountValues.V3
           break
         case 2:
-          _value *= this.VxValues.V2
+          _value *= this.StellarCountValues.V2
           break
         case 3:
-          _value *= this.VxValues.V1
+          _value *= this.StellarCountValues.V1
           break
         default:
           console.warn(`Data can't be handled by any case`)
@@ -79,8 +100,15 @@ export class StellarShardsCalculatorComponent implements OnInit {
     return value
   }
 
-  getTotalDynamic(values: number[]): number {
-    console.log(values)
+  getTotalSSDynamic(): number {
     return 0
+  }
+
+  resetForm(): void {
+    const result = confirm('Are you sure you want to reset the form?')
+
+    if (result) {
+      this.form.resetForm()
+    }
   }
 }

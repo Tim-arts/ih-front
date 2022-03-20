@@ -4,10 +4,115 @@
 
 .entry {
   span {
-    top: -.5rem;
+    top: -.7rem;
+  }
+}
+
+.add-hero {
+  background-color: rgba(255, 255, 255, .01);
+  border-radius: 8px;
+  height: 100%;
+  transition: background-color .3s ease;
+  will-change: background-color;
+
+  mat-icon {
+    $size: 4.8rem;
+
+    width: $size;
+    height: $size;
+    font-size: $size;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, .05);
   }
 }
 
 .advanced-view {
-  background: url('../../../assets/images/resources/hero_board3-optimized.png') no-repeat center center fixed;
+  $area-size: 3rem;
+
+  .areas {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .area {
+    width: $area-size;
+    height: $area-size;
+
+    &.v0-hp {
+      top: 7px;
+      left: 135px;
+    }
+
+    &.v0-atk {
+      top: 30px;
+      right: 92px;
+    }
+
+    &.v0-hp-atk {
+      top: 70px;
+      right: 60px;
+    }
+
+    &.v1-hp {
+      top: 177px;
+      right: 68px;
+    }
+
+    &.v1-atk {
+      top: 203px;
+      right: 113px;
+    }
+
+    &.v1-hp-atk {
+      top: 209px;
+      right: 168px;
+    }
+
+    &.v2-hp {
+      top: 154px;
+      left: 51px;
+    }
+
+    &.v2-atk {
+      top: 110px;
+      left: 48px;
+    }
+
+    &.v2-hp-atk {
+      top: 73px;
+      left: 74px;
+    }
+
+    &.v3-hp {
+      top: 71px;
+      left: 161px;
+    }
+
+    &.v3-atk {
+      top: 101px;
+      left: 180px;
+    }
+
+    &.v3-hp-atk {
+      top: 132px;
+      left: 168px;
+    }
+
+    img {
+      opacity: 0;
+      transition: opacity .1s ease;
+      will-change: opacity;
+    }
+
+    &:hover {
+      img {
+        opacity: 1;
+      }
+    }
+
+  }
 }

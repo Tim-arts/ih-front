@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
+import { MatTooltipModule } from '@angular/material/tooltip'
 
 import { StellarShardsCalculatorComponent } from './stellar-shards-calculator.component'
 import { FeaturesModule } from '../features.module'
@@ -18,6 +19,7 @@ import { FeaturesModule } from '../features.module'
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatTooltipModule,
   ],
 })
 export class StellarShardsCalculatorModule {}

@@ -14,3 +14,16 @@ h1 {
 mat-toolbar.mat-toolbar.mat-primary {
   background-color: transparentize(colors.$primary, .9);
 }
+
+.credits {
+  line-height: 1.2;
+
+  span {
+    font-size: 1.6rem;
+  }
+
+  p {
+    color: colors.$secondary;
+    font-size: 1rem;
+  }
+}
