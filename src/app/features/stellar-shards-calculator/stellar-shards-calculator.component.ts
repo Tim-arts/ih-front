@@ -7,8 +7,9 @@ import {
   staticDefaultValues,
   StaticModel,
   StellarCountValues,
-  partialNodeValues,
   nodeValues,
+  DynamicModelNode,
+  dynamicDefaultValuesNodes,
 } from './stellar-shards-calculator'
 
 @Component({
@@ -22,6 +23,9 @@ export class StellarShardsCalculatorComponent implements OnInit {
     dynamicModel: this.formBuilder.array([]),
   })
   StellarCountValues = StellarCountValues
+
+  totalHeroCount: number = 0
+  totalSSCount: number = 0
 
   get dynamicModel(): FormArray {
     return this.formControlModel.get('dynamicModel') as FormArray
@@ -48,8 +52,8 @@ export class StellarShardsCalculatorComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.getHeroCount()
-    this.getTotalSS()
+    this.totalHeroCount = this.getHeroCount()
+    this.totalSSCount = this.getTotalSS()
   }
 
   getHeroCount(): number {
@@ -104,6 +108,8 @@ export class StellarShardsCalculatorComponent implements OnInit {
     const array: DynamicModel[] = this.formControlModel.value.dynamicModel
     let value: number = 0
 
+    console.log(array)
+
     array.forEach((entry: DynamicModel) => {
       Object.keys(entry.nodes).forEach((node: string, index: number) => {
         const currentValue = entry.nodes[node]
@@ -113,6 +119,8 @@ export class StellarShardsCalculatorComponent implements OnInit {
         value += this.getAssociatedValue(currentValue, index)
       })
     })
+
+    console.log(value)
 
     return value
   }
@@ -148,10 +156,13 @@ export class StellarShardsCalculatorComponent implements OnInit {
     control.controls[index].get('nodes')?.reset()
   }
 
-  checkField(number: number, element: HTMLInputElement) {
-    if (!number) return
+  checkField(event: Event) {
+    const element: HTMLInputElement = <HTMLInputElement>event.target
+    const value: number = Number(element.value)
 
-    if (number > 30) {
+    if (!value) return
+
+    if (value > 30) {
       element.value = '30'
     }
 
@@ -169,8 +180,18 @@ export class StellarShardsCalculatorComponent implements OnInit {
   }
 
   getPreviousNodeValue(nodePosition: number): number {
-    const array: number[] = partialNodeValues.slice(0, nodePosition)
-    return array.reduce((partialSum, a) => partialSum + a, 0)
+    // const array: number[] = partialNodeValues.slice(0, nodePosition)
+    // return array.reduce((partialSum, a) => partialSum + a, 0)
+
+    const values: DynamicModelNode = this.getMaximumValues()
+
+    console.log(values)
+
+    this.formControlModel.controls.dynamicModel
+      .get(`${nodePosition}.nodes`)
+      ?.patchValue(values, { emitEvent: false })
+
+    return 0
   }
 
   getCurrentNodeValue(nodeValue: number, nodePosition: number): number {
@@ -182,5 +203,19 @@ export class StellarShardsCalculatorComponent implements OnInit {
     }
 
     return value
+  }
+
+  getMaximumValues(): DynamicModelNode {
+    const object: DynamicModelNode = dynamicDefaultValuesNodes
+
+    Object.keys(object).forEach((key: string) => {
+      if (key === 'V3-SPD') {
+        object[key] = 10
+      } else {
+        object[key] = 30
+      }
+    })
+
+    return object
   }
 }
