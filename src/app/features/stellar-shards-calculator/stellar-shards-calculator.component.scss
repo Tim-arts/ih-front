@@ -2,6 +2,9 @@
   line-height: 20px;
 }
 
+$green: #94e055;
+$border-radius: 4px;
+
 .entry {
   span {
     top: -.7rem;
@@ -10,7 +13,7 @@
 
 .add-hero {
   background-color: rgba(255, 255, 255, .01);
-  border-radius: 8px;
+  border-radius: $border-radius;
   height: 100%;
   transition: background-color .3s ease;
   will-change: background-color;
@@ -30,6 +33,25 @@
 
 .advanced-view {
   $area-size: 3rem;
+
+  .name {
+    color: white;
+    width: fit-content;
+    max-width: 70px;
+    background-color: rgba(255, 255, 255, .05);
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: border .1s ease;
+    will-change: border;
+
+    &:hover, &:focus-visible {
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, .2);
+    }
+  }
 
   .areas {
     width: 100%;
@@ -114,5 +136,30 @@
       }
     }
 
+  }
+
+  .node-value {
+    top: -.5rem;
+    left: .1rem;
+
+    input[type="number"] {
+      width: 25px;
+      background-color: transparent;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        display: none;
+      }
+    }
+
+    input, input::placeholder, label {
+      color: $green;
+      font-weight: bold;
+    }
   }
 }

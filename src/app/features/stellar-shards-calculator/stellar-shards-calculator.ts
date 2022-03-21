@@ -12,23 +12,53 @@ export interface StellarShardsModel {
 }
 
 export interface StaticModel {
-  V4: number
-  V3: number
-  V2: number
-  V1: number
+  V4: number | null
+  V3: number | null
+  V2: number | null
+  V1: number | null
 }
 
 export interface DynamicModel {
-  'V0-HP': number
-  'V0-ATK': number
-  'V0-HP-ATK': number
-  'V1-HP': number
-  'V1-ATK': number
-  'V1-HP-ATK': number
-  'V2-HP': number
-  'V2-ATK': number
-  'V2-HP-ATK': number
-  'V3-HP': number
-  'V3-ATK': number
-  'V3-SPD': number
+  nodes: {
+    'V0-HP': number | null
+    'V0-ATK': number | null
+    'V0-HP-ATK': number | null
+    'V1-HP': number | null
+    'V1-ATK': number | null
+    'V1-HP-ATK': number | null
+    'V2-HP': number | null
+    'V2-ATK': number | null
+    'V2-HP-ATK': number | null
+    'V3-HP': number | null
+    'V3-ATK': number | null
+    'V3-SPD': number | null
+  }
+  name: string
 }
+
+export const staticDefaultValues: StaticModel = {
+  V4: null,
+  V3: null,
+  V2: null,
+  V1: null,
+}
+
+export const dynamicDefaultValues: DynamicModel[] = [
+  {
+    nodes: {
+      'V0-HP': null,
+      'V0-ATK': null,
+      'V0-HP-ATK': null,
+      'V1-HP': null,
+      'V1-ATK': null,
+      'V1-HP-ATK': null,
+      'V2-HP': null,
+      'V2-ATK': null,
+      'V2-HP-ATK': null,
+      'V3-HP': null,
+      'V3-ATK': null,
+      'V3-SPD': null,
+    },
+    name: '',
+  },
+]

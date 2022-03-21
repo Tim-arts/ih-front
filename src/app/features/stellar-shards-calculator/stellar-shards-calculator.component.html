@@ -10,7 +10,7 @@
       </button>
     </div>
   </div>
-  <form [formGroup]="formControlModel" (ngSubmit)="onSubmit()" #form="ngForm">
+  <form [formGroup]="formControlModel" (ngSubmit)="onSubmit()">
     <div class="row py-5" formGroupName="staticModel">
       <div class="col-12 d-flex justify-content-between">
         <div class="entry d-flex flex-column">
@@ -64,57 +64,61 @@
       </div>
     </div>
     <div class="row py-5" formArrayName="dynamicModel">
-      <div class="col-3 mx-3 text-center" *ngFor="let alias of dynamicModel.controls; let i = index">
-        <input id="hero-{{ i }}" type="text" [formControlName]="i" hidden>
-        <div class="advanced-view position-relative">
-          <img class="pointer-events-none" src="assets/images/resources/spiral.png" alt="Spiral"/>
-          <div class="areas position-absolute">
-            <!-- VO -->
-            <div class="area v0-hp position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"/>
-              <span>
-                <span class="value">0</span>
-                <span class="value-max">/10</span>
+      <div class="col-3 text-center" *ngFor="let hero of dynamicModel.controls; let i = index">
+        <ng-container [formGroupName]="i">
+          <div class="advanced-view position-relative">
+            <input type="text" id="hero-{{ i }}" class="name position-absolute py-2 px-3" [placeholder]="i"
+                   formControlName="name"/>
+            <img class="pointer-events-none" src="assets/images/resources/spiral.png" alt="Spiral"/>
+            <div class="areas position-absolute">
+              <!-- VO -->
+              <div class="area v0-hp position-absolute cursor-pointer" formGroupName="nodes">
+                <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
+                     (click)="V0HP1.focus()"/>
+                <span class="node-value position-relative">
+                <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0" formControlName="V0-HP"
+                       (ngModelChange)="onSubmit()" max="30" #V0HP1/>
               </span>
-            </div>
-            <div class="area v0-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
-            </div>
-            <div class="area v0-hp-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"/>
-            </div>
-            <!-- V1-->
-            <div class="area v1-hp position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"/>
-            </div>
-            <div class="area v1-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
-            </div>
-            <div class="area v1-hp-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"/>
-            </div>
-            <!-- V2 -->
-            <div class="area v2-hp position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"/>
-            </div>
-            <div class="area v2-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
-            </div>
-            <div class="area v2-hp-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"/>
-            </div>
-            <!-- V3 -->
-            <div class="area v3-hp position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"/>
-            </div>
-            <div class="area v3-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
-            </div>
-            <div class="area v3-hp-atk position-absolute cursor-pointer">
-              <img src="assets/images/resources/hero_icon_activation3.png" alt="HP/ATK" width="30"/>
+              </div>
+              <div class="area v0-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
+              </div>
+              <div class="area v0-hp-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"/>
+              </div>
+              <!-- V1-->
+              <div class="area v1-hp position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"/>
+              </div>
+              <div class="area v1-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
+              </div>
+              <div class="area v1-hp-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"/>
+              </div>
+              <!-- V2 -->
+              <div class="area v2-hp position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"/>
+              </div>
+              <div class="area v2-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
+              </div>
+              <div class="area v2-hp-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"/>
+              </div>
+              <!-- V3 -->
+              <div class="area v3-hp position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"/>
+              </div>
+              <div class="area v3-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"/>
+              </div>
+              <div class="area v3-hp-atk position-absolute cursor-pointer">
+                <img src="assets/images/resources/hero_icon_activation3.png" alt="HP/ATK" width="30"/>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </div>
       <div class="col-3">
         <div class="add-hero d-flex align-items-center justify-content-center cursor-pointer" (click)="addHero()">

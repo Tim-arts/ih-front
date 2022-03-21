@@ -1,55 +1,55 @@
-import { Component, ViewChild } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms'
+import { Component, OnInit } from '@angular/core'
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
 
-import { StaticModel, StellarCountValues } from './stellar-shards-calculator'
+import {
+  dynamicDefaultValues,
+  DynamicModel,
+  staticDefaultValues,
+  StaticModel,
+  StellarCountValues,
+} from './stellar-shards-calculator'
 
 @Component({
   selector: 'app-stellar-shards-calculator',
   templateUrl: './stellar-shards-calculator.component.html',
   styleUrls: ['./stellar-shards-calculator.component.scss'],
 })
-export class StellarShardsCalculatorComponent {
+export class StellarShardsCalculatorComponent implements OnInit {
   formControlModel: FormGroup = this.formBuilder.group({
-    staticModel: this.formBuilder.group({
-      V4: null,
-      V3: null,
-      V2: null,
-      V1: null,
-    }),
-    dynamicModel: this.formBuilder.array([
-      this.formBuilder.group({
-        'V0-HP': null,
-        'V0-ATK': null,
-        'V0-HP-ATK': null,
-        'V1-HP': null,
-        'V1-ATK': null,
-        'V1-HP-ATK': null,
-        'V2-HP': null,
-        'V2-ATK': null,
-        'V2-HP-ATK': null,
-        'V3-HP': null,
-        'V3-ATK': null,
-        'V3-SPD': null,
-      }),
-    ]),
+    staticModel: this.formBuilder.group(staticDefaultValues),
+    dynamicModel: this.formBuilder.array([]),
   })
   StellarCountValues = StellarCountValues
 
-  @ViewChild('form', { static: true }) form!: NgForm
-
-  get dynamicModel() {
+  get dynamicModel(): FormArray {
     return this.formControlModel.get('dynamicModel') as FormArray
   }
 
   constructor(private formBuilder: FormBuilder) {}
 
-  addHero() {
-    this.dynamicModel.push(this.formBuilder.control(0))
+  ngOnInit(): void {
+    console.log(this.formControlModel.controls)
+    this.loadDynamicData(dynamicDefaultValues)
+  }
+
+  loadDynamicData(data: DynamicModel[]): void {
+    const control = <FormArray>this.formControlModel.get('dynamicModel')
+    data.forEach((x: DynamicModel) => {
+      control.push(this.patchValues(x.name, x.nodes))
+    })
+  }
+
+  patchValues(name, nodes): FormGroup {
+    return this.formBuilder.group({
+      name: [name],
+      nodes: this.formBuilder.group(nodes),
+    })
   }
 
   onSubmit(): void {
     this.getHeroCount()
     this.getTotalSS()
+    console.log(this.formControlModel.value.dynamicModel)
   }
 
   getHeroCount(): number {
@@ -108,7 +108,17 @@ export class StellarShardsCalculatorComponent {
     const result = confirm('Are you sure you want to reset the form?')
 
     if (result) {
-      this.form.resetForm()
+      this.formControlModel.controls.staticModel.reset()
+      this.formControlModel.controls.dynamicModel.reset()
     }
+  }
+
+  addHero(): void {
+    this.loadDynamicData(dynamicDefaultValues)
+  }
+
+  removeHero(index: number): void {
+    const control = <FormArray>this.formControlModel.get('dynamicModel')
+    control.removeAt(index)
   }
 }
