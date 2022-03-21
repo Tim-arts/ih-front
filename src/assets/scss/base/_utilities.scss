@@ -13,3 +13,11 @@
 .cursor-text {
   cursor: text;
 }
+
+.icon-small {
+  $size: 20px;
+
+  font-size: $size !important;
+  width: $size !important;
+  height: $size !important;
+}

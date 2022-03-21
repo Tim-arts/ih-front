@@ -7,6 +7,8 @@ import {
   staticDefaultValues,
   StaticModel,
   StellarCountValues,
+  partialNodeValues,
+  nodeValues,
 } from './stellar-shards-calculator'
 
 @Component({
@@ -28,7 +30,6 @@ export class StellarShardsCalculatorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    console.log(this.formControlModel.controls)
     this.loadDynamicData(dynamicDefaultValues)
   }
 
@@ -49,18 +50,17 @@ export class StellarShardsCalculatorComponent implements OnInit {
   onSubmit(): void {
     this.getHeroCount()
     this.getTotalSS()
-    console.log(this.formControlModel.value.dynamicModel)
   }
 
   getHeroCount(): number {
     let count: number = 0
 
-    // Static
+    // Static part
     Object.keys(this.formControlModel.value.staticModel).map((key: string) => {
       count += this.formControlModel.value.staticModel[key]
     })
 
-    // Dynamic
+    // Dynamic part
     count += this.formControlModel.value.dynamicModel.length
 
     return count
@@ -101,7 +101,20 @@ export class StellarShardsCalculatorComponent implements OnInit {
   }
 
   getTotalSSDynamic(): number {
-    return 0
+    const array: DynamicModel[] = this.formControlModel.value.dynamicModel
+    let value: number = 0
+
+    array.forEach((entry: DynamicModel) => {
+      Object.keys(entry.nodes).forEach((node: string, index: number) => {
+        const currentValue = entry.nodes[node]
+
+        if (!currentValue) return
+
+        value += this.getAssociatedValue(currentValue, index)
+      })
+    })
+
+    return value
   }
 
   resetForm(): void {
@@ -110,6 +123,14 @@ export class StellarShardsCalculatorComponent implements OnInit {
     if (result) {
       this.formControlModel.controls.staticModel.reset()
       this.formControlModel.controls.dynamicModel.reset()
+
+      for (
+        let i = 0;
+        i < this.formControlModel.value.dynamicModel.length;
+        i++
+      ) {
+        this.removeHero(i)
+      }
     }
   }
 
@@ -120,5 +141,46 @@ export class StellarShardsCalculatorComponent implements OnInit {
   removeHero(index: number): void {
     const control = <FormArray>this.formControlModel.get('dynamicModel')
     control.removeAt(index)
+  }
+
+  resetHero(index: number): void {
+    const control = <FormArray>this.formControlModel.get('dynamicModel')
+    control.controls[index].get('nodes')?.reset()
+  }
+
+  checkField(number: number, element: HTMLInputElement) {
+    if (!number) return
+
+    if (number > 30) {
+      element.value = '30'
+    }
+
+    this.onSubmit()
+  }
+
+  getAssociatedValue(nodeValue: number, nodePosition: number): number {
+    const previousNodesValue: number = this.getPreviousNodeValue(nodePosition)
+    const currentNodesValue: number = this.getCurrentNodeValue(
+      nodeValue,
+      nodePosition
+    )
+
+    return previousNodesValue + currentNodesValue
+  }
+
+  getPreviousNodeValue(nodePosition: number): number {
+    const array: number[] = partialNodeValues.slice(0, nodePosition)
+    return array.reduce((partialSum, a) => partialSum + a, 0)
+  }
+
+  getCurrentNodeValue(nodeValue: number, nodePosition: number): number {
+    const array: number[] = nodeValues[nodePosition]
+    let value: number = 0
+
+    for (let i = 0; i < nodeValue; i++) {
+      value += array[i]
+    }
+
+    return value
   }
 }
