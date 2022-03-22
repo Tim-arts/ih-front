@@ -1,0 +1,133 @@
+<ng-container [formGroup]="formRoot">
+  <div class="row py-5" formArrayName="dynamicModel">
+    <div class="col-3 text-center" *ngFor="let hero of dynamicModel.controls; let i = index">
+      <div class="advanced-view position-relative" [formGroupName]="i">
+        <input type="text" id="hero-{{ i }}" class="name position-absolute py-2 px-3" [placeholder]="i"
+               formControlName="name"/>
+        <button type="button" class="remove-hero position-absolute" mat-mini-fab color="primary"
+                aria-label="Remove hero" (click)="removeHero(i)">
+          <mat-icon class="icon-small">delete</mat-icon>
+        </button>
+        <button type="button" class="reset-hero position-absolute" mat-mini-fab color="primary"
+                aria-label="Reset hero" (click)="resetHero(i)">
+          <mat-icon class="icon-small">replay</mat-icon>
+        </button>
+        <img class="pointer-events-none" src="assets/images/resources/spiral.png" alt="Spiral"/>
+        <div class="areas position-absolute" formGroupName="nodes">
+          <!-- VO -->
+          <div class="area v0-hp position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
+                 (click)="V0HP.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V0-HP" (change)="checkField($event)" min="0" max="30" #V0HP/>
+                </span>
+          </div>
+          <div class="area v0-atk position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation2.png" alt="HP/ATK" width="30"
+                 (click)="V0ATK.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V0-ATK" (change)="checkField($event)" min="0" max="30" #V0ATK/>
+                </span>
+          </div>
+          <div class="area v0-hp-atk position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation14.png" alt="ATK" width="30"
+                 (click)="V0HPATK.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V0-HP-ATK" (change)="checkField($event)" min="0" max="30"
+                         #V0HPATK/>
+                </span>
+          </div>
+          <!-- V1-->
+          <div class="area v1-hp position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
+                 (click)="V1HP.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V1-HP" (change)="checkField($event)" min="0" max="30" #V1HP/>
+                </span>
+          </div>
+          <div class="area v1-atk position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"
+                 (click)="V1ATK.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V1-ATK" (change)="checkField($event)" min="0" max="30" #V1ATK/>
+                </span>
+          </div>
+          <div class="area v1-hp-atk position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"
+                 (click)="V1HPATK.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V1-HP-ATK" (change)="checkField($event)" min="0" max="30"
+                         #V1HPATK/>
+                </span>
+          </div>
+          <!-- V2 -->
+          <div class="area v2-hp position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
+                 (click)="V2HP.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V2-HP" (change)="checkField($event)" min="0" max="30" #V2HP/>
+                </span>
+          </div>
+          <div class="area v2-atk position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"
+                 (click)="V2ATK.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V2-ATK" (change)="checkField($event)" min="0" max="30" #V2ATK/>
+                </span>
+          </div>
+          <div class="area v2-hp-atk position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"
+                 (click)="V2HPATK.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V2-HP-ATK" (change)="checkField($event)" min="0" max="30"
+                         #V2HPATK/>
+                </span>
+          </div>
+          <!-- V3 -->
+          <div class="area v3-hp position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
+                 (click)="V3HP.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V3-HP" (change)="checkField($event)" min="0" max="30" #V3HP/>
+                </span>
+          </div>
+          <div class="area v3-atk position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation1.png" alt="ATK" width="30"
+                 (click)="V3ATK.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V3-ATK" (change)="checkField($event)" min="0" max="30" #V3ATK/>
+                </span>
+          </div>
+          <div class="area v3-spd position-absolute cursor-pointer">
+            <img src="assets/images/resources/hero_icon_activation1.png" alt="SPD" width="30"
+                 (click)="V3SPD.focus()"/>
+            <span class="node-value position-relative">
+                  <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
+                         formControlName="V3-SPD" (change)="checkField($event)" min="0" max="10" #V3SPD/>
+                </span>
+          </div>
+        </div>
+        <p class="mt-5">
+          <span>0 </span>
+          <span>/ 4.935.000</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="add-hero d-flex align-items-center justify-content-center cursor-pointer" (click)="addHero()">
+        <mat-icon class="icon-large">add</mat-icon>
+      </div>
+    </div>
+  </div>
+</ng-container>
