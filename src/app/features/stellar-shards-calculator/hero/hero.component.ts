@@ -23,10 +23,12 @@ import {
 export class HeroComponent implements OnInit {
   formRoot!: FormGroup
   dynamicModel!: FormArray
+
   StellarCountValues = StellarCountValues
+  totalSSCount: number = 0
 
   @Input() formArrayName!: string
-  @Output() onSubmit = new EventEmitter<number>()
+  @Output() submitValue = new EventEmitter<number>()
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,10 +38,16 @@ export class HeroComponent implements OnInit {
   ngOnInit(): void {
     this.formRoot = this.formGroupDirective.control
     this.dynamicModel = this.formRoot.get(this.formArrayName) as FormArray
-    this.loadDynamicData(dynamicDefaultValues)
+    this.setupDynamicModel(dynamicDefaultValues)
   }
 
-  loadDynamicData(data: DynamicModel[]): void {
+  onSubmit(value: number, element: HTMLInputElement): void {
+    this.sanitizedUserInputValue(value, element)
+    this.totalSSCount = this.getTotalStellarShards()
+    this.submitValue.emit(this.totalSSCount)
+  }
+
+  setupDynamicModel(data: DynamicModel[]): void {
     const control = <FormArray>this.dynamicModel
     data.forEach((x: DynamicModel) => {
       control.push(this.patchValues(x.name, x.nodes))
@@ -53,7 +61,37 @@ export class HeroComponent implements OnInit {
     })
   }
 
-  getTotalSSDynamic(): number {
+  addHero(): void {
+    this.setupDynamicModel(dynamicDefaultValues)
+  }
+
+  removeHero(index: number): void {
+    const control = <FormArray>this.dynamicModel
+    control.removeAt(index)
+  }
+
+  resetHero(index: number): void {
+    const control = <FormArray>this.dynamicModel
+    control.controls[index].get('nodes')?.reset()
+  }
+
+  sanitizedUserInputValue(value: number, element: HTMLInputElement): void {
+    if (value === undefined || value === null) {
+      return
+    }
+
+    if (value < 0) {
+      element.value = '0'
+      value = Number(element.value)
+    }
+
+    if (value > 30) {
+      element.value = '30'
+      value = Number(element.value)
+    }
+  }
+
+  getTotalStellarShards(): number {
     const array: DynamicModel[] = this.dynamicModel.value
     let value: number = 0
 
@@ -69,36 +107,7 @@ export class HeroComponent implements OnInit {
       })
     })
 
-    console.log(value)
-
     return value
-  }
-
-  addHero(): void {
-    this.loadDynamicData(dynamicDefaultValues)
-  }
-
-  removeHero(index: number): void {
-    const control = <FormArray>this.dynamicModel
-    control.removeAt(index)
-  }
-
-  resetHero(index: number): void {
-    const control = <FormArray>this.dynamicModel
-    control.controls[index].get('nodes')?.reset()
-  }
-
-  checkField(event: Event) {
-    const element: HTMLInputElement = <HTMLInputElement>event.target
-    const value: number = Number(element.value)
-
-    if (!value) return
-
-    if (value > 30) {
-      element.value = '30'
-    }
-
-    this.onSubmit.emit(value)
   }
 
   getAssociatedValue(nodeValue: number, nodePosition: number): number {
