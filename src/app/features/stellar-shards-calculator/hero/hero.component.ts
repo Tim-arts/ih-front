@@ -8,10 +8,7 @@ import {
 
 import {
   dynamicDefaultValues,
-  dynamicDefaultValuesNodes,
   DynamicModel,
-  DynamicModelNode,
-  nodeValues,
   StellarCountValues,
 } from '../stellar-shards-calculator'
 
@@ -41,10 +38,13 @@ export class HeroComponent implements OnInit {
     this.setupDynamicModel(dynamicDefaultValues)
   }
 
-  onSubmit(value: number, element: HTMLInputElement): void {
-    this.sanitizedUserInputValue(value, element)
-    this.totalSSCount = this.getTotalStellarShards()
-    this.submitValue.emit(this.totalSSCount)
+  onSubmit(event: Event, heroIndex: number, nodeIndex: number): void {
+    this.updateNodes(heroIndex, nodeIndex)
+
+    setTimeout(() => {
+      this.totalSSCount = this.getTotalStellarShards()
+      this.submitValue.emit(this.totalSSCount)
+    }, 0)
   }
 
   setupDynamicModel(data: DynamicModel[]): void {
@@ -75,88 +75,20 @@ export class HeroComponent implements OnInit {
     control.controls[index].get('nodes')?.reset()
   }
 
-  sanitizedUserInputValue(value: number, element: HTMLInputElement): void {
-    if (value === undefined || value === null) {
-      return
-    }
-
-    if (value < 0) {
-      element.value = '0'
-      value = Number(element.value)
-    }
-
-    if (value > 30) {
-      element.value = '30'
-      value = Number(element.value)
-    }
-  }
-
   getTotalStellarShards(): number {
-    const array: DynamicModel[] = this.dynamicModel.value
-    let value: number = 0
-
-    console.log(array)
-
-    array.forEach((entry: DynamicModel) => {
-      Object.keys(entry.nodes).forEach((node: string, index: number) => {
-        const currentValue = entry.nodes[node]
-
-        if (!currentValue) return
-
-        value += this.getAssociatedValue(currentValue, index)
-      })
-    })
-
-    return value
-  }
-
-  getAssociatedValue(nodeValue: number, nodePosition: number): number {
-    const previousNodesValue: number = this.getPreviousNodeValue(nodePosition)
-    const currentNodesValue: number = this.getCurrentNodeValue(
-      nodeValue,
-      nodePosition
-    )
-
-    return previousNodesValue + currentNodesValue
-  }
-
-  getPreviousNodeValue(nodePosition: number): number {
-    // const array: number[] = partialNodeValues.slice(0, nodePosition)
-    // return array.reduce((partialSum, a) => partialSum + a, 0)
-
-    const values: DynamicModelNode = this.getMaximumValues()
-
-    console.log(values)
-
-    this.dynamicModel
-      .get(`${nodePosition}.nodes`)
-      ?.patchValue(values, { emitEvent: false })
-
+    console.log(this.dynamicModel.value)
     return 0
   }
 
-  getCurrentNodeValue(nodeValue: number, nodePosition: number): number {
-    const array: number[] = nodeValues[nodePosition]
-    let value: number = 0
-
-    for (let i = 0; i < nodeValue; i++) {
-      value += array[i]
+  updateNodes(heroIndex, nodeIndex) {
+    // Update previous nodes by setting the maximum value
+    for (let i = 0; i < nodeIndex; i++) {
+      this.dynamicModel.get(`${heroIndex}.nodes.${i}`)?.patchValue(30)
     }
 
-    return value
-  }
-
-  getMaximumValues(): DynamicModelNode {
-    const object: DynamicModelNode = dynamicDefaultValuesNodes
-
-    Object.keys(object).forEach((key: string) => {
-      if (key === 'V3-SPD') {
-        object[key] = 10
-      } else {
-        object[key] = 30
-      }
-    })
-
-    return object
+    // Update next nodes by setting the minimum value
+    for (let i = 11; i > nodeIndex; i--) {
+      this.dynamicModel.get(`${heroIndex}.nodes.${i}`)?.patchValue(0)
+    }
   }
 }

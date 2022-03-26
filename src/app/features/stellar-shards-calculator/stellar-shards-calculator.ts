@@ -6,11 +6,6 @@ export enum StellarCountValues {
   V4 = 4935000,
 }
 
-export interface StellarShardsModel {
-  staticModel: StaticModel
-  dynamicModel: DynamicModel
-}
-
 export interface StaticModel {
   V4: number | null
   V3: number | null
@@ -18,23 +13,8 @@ export interface StaticModel {
   V1: number | null
 }
 
-export interface DynamicModelNode {
-  'V0-HP': number | null
-  'V0-ATK': number | null
-  'V0-HP-ATK': number | null
-  'V1-HP': number | null
-  'V1-ATK': number | null
-  'V1-HP-ATK': number | null
-  'V2-HP': number | null
-  'V2-ATK': number | null
-  'V2-HP-ATK': number | null
-  'V3-HP': number | null
-  'V3-ATK': number | null
-  'V3-SPD': number | null
-}
-
 export interface DynamicModel {
-  nodes: DynamicModelNode
+  nodes: number[]
   name: string
 }
 
@@ -45,20 +25,9 @@ export const staticDefaultValues: StaticModel = {
   V1: null,
 }
 
-export const dynamicDefaultValuesNodes: DynamicModelNode = {
-  'V0-HP': null,
-  'V0-ATK': 2,
-  'V0-HP-ATK': null,
-  'V1-HP': null,
-  'V1-ATK': null,
-  'V1-HP-ATK': null,
-  'V2-HP': null,
-  'V2-ATK': null,
-  'V2-HP-ATK': null,
-  'V3-HP': null,
-  'V3-ATK': null,
-  'V3-SPD': null,
-}
+export const dynamicDefaultValuesNodes: number[] = [
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+]
 
 export const dynamicDefaultValues: DynamicModel[] = [
   {
