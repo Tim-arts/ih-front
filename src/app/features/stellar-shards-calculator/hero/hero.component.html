@@ -3,7 +3,7 @@
     <div class="col-3 my-5 text-center" *ngFor="let hero of dynamicModel.controls; let i = index">
       <div class="advanced-view position-relative" [formGroupName]="i">
         <input type="text" id="hero-{{ i }}" class="name position-absolute py-2 px-3" [placeholder]="i"
-               formControlName="name"/>
+               formControlName="name" (change)="updateName(i)"/>
         <button type="button" class="remove-hero position-absolute" mat-mini-fab color="primary"
                 aria-label="Remove hero" (click)="removeHero(i)">
           <mat-icon class="icon-small">delete</mat-icon>
@@ -20,7 +20,7 @@
                  (click)="V0HP.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="0" (change)="onSubmit($event, i, 0)" min="0" max="30" #V0HP/>
+                         formControlName="0" (change)="onSubmit(i, 0)" min="0" max="30" #V0HP/>
                 </span>
           </div>
           <div class="area v0-atk position-absolute cursor-pointer">
@@ -28,7 +28,7 @@
                  (click)="V0ATK.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="1" (change)="onSubmit($event, i, 1)" min="0" max="30" #V0ATK/>
+                         formControlName="1" (change)="onSubmit(i, 1)" min="0" max="30" #V0ATK/>
                 </span>
           </div>
           <div class="area v0-hp-atk position-absolute cursor-pointer">
@@ -36,7 +36,7 @@
                  (click)="V0HPATK.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="2" (change)="onSubmit($event, i, 2)" min="0" max="30" #V0HPATK/>
+                         formControlName="2" (change)="onSubmit(i, 2)" min="0" max="10" #V0HPATK/>
                 </span>
           </div>
           <!-- V1-->
@@ -45,7 +45,7 @@
                  (click)="V1HP.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="3" (change)="onSubmit($event, i, 3)" min="0" max="30" #V1HP/>
+                         formControlName="3" (change)="onSubmit(i, 3)" min="0" max="30" #V1HP/>
                 </span>
           </div>
           <div class="area v1-atk position-absolute cursor-pointer">
@@ -53,7 +53,7 @@
                  (click)="V1ATK.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="4" (change)="onSubmit($event, i, 4)" min="0" max="30" #V1ATK/>
+                         formControlName="4" (change)="onSubmit(i, 4)" min="0" max="30" #V1ATK/>
                 </span>
           </div>
           <div class="area v1-hp-atk position-absolute cursor-pointer">
@@ -61,7 +61,7 @@
                  (click)="V1HPATK.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="5" (change)="onSubmit($event, i, 5)" min="0" max="30" #V1HPATK/>
+                         formControlName="5" (change)="onSubmit(i, 5)" min="0" max="10" #V1HPATK/>
                 </span>
           </div>
           <!-- V2 -->
@@ -70,7 +70,7 @@
                  (click)="V2HP.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="6" (change)="onSubmit($event, i, 6)" min="0" max="30" #V2HP/>
+                         formControlName="6" (change)="onSubmit(i, 6)" min="0" max="30" #V2HP/>
                 </span>
           </div>
           <div class="area v2-atk position-absolute cursor-pointer">
@@ -78,7 +78,7 @@
                  (click)="V2ATK.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="7" (change)="onSubmit($event, i, 7)" min="0" max="30" #V2ATK/>
+                         formControlName="7" (change)="onSubmit(i, 7)" min="0" max="30" #V2ATK/>
                 </span>
           </div>
           <div class="area v2-hp-atk position-absolute cursor-pointer">
@@ -86,7 +86,7 @@
                  (click)="V2HPATK.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="8" (change)="onSubmit($event, i, 8)" min="0" max="30" #V2HPATK/>
+                         formControlName="8" (change)="onSubmit(i, 8)" min="0" max="10" #V2HPATK/>
                 </span>
           </div>
           <!-- V3 -->
@@ -95,7 +95,7 @@
                  (click)="V3HP.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="9" (change)="onSubmit($event, i, 9)" min="0" max="30" #V3HP/>
+                         formControlName="9" (change)="onSubmit(i, 9)" min="0" max="30" #V3HP/>
                 </span>
           </div>
           <div class="area v3-atk position-absolute cursor-pointer">
@@ -103,7 +103,7 @@
                  (click)="V3ATK.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="10" (change)="onSubmit($event, i, 10)" min="0" max="30" #V3ATK/>
+                         formControlName="10" (change)="onSubmit(i, 10)" min="0" max="30" #V3ATK/>
                 </span>
           </div>
           <div class="area v3-spd position-absolute cursor-pointer">
@@ -111,12 +111,12 @@
                  (click)="V3SPD.focus()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
-                         formControlName="11" (change)="onSubmit($event, i, 11)" min="0" max="10" #V3SPD/>
+                         formControlName="11" (change)="onSubmit(i, 11)" min="0" max="10" #V3SPD/>
                 </span>
           </div>
         </div>
         <p class="mt-5">
-          <span>0 </span>
+          <span>{{ SSCountArray[i] || 0 }} </span>
           <span>/ 4.935.000</span>
         </p>
       </div>
