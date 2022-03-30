@@ -84,7 +84,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.bag | number: '1.' }}</span>
+              class="position-relative">{{ (formControlModel.value.staticModel.bag | number: '1.') || 0 }}</span>
           </span>
         </div>
       </div>
