@@ -63,6 +63,10 @@ export class StellarShardsCalculatorComponent implements OnInit {
     let value: number = 0
 
     Object.keys(staticData).forEach((key: string) => {
+      if (key === 'bag') {
+        return
+      }
+
       value += Number(staticData[key])
     })
 
@@ -114,6 +118,9 @@ export class StellarShardsCalculatorComponent implements OnInit {
         case 3:
           _value *= this.StellarCountValues.V1
           break
+        case 4:
+          _value
+          break
         default:
           console.warn(`Data doesn't fit to any case`)
       }
@@ -127,8 +134,6 @@ export class StellarShardsCalculatorComponent implements OnInit {
   updateLocalStorage() {
     const values: StaticModel = this.formControlModel.get('staticModel')?.value
     const data: localStorageModel = getObject(KEY_LOCALSTORAGE)
-
-    console.log(hasDataSavedInLocalStorage())
 
     if (hasDataSavedInLocalStorage()) {
       data.staticModel = values

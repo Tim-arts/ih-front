@@ -17,6 +17,7 @@ import {
 } from '../stellar-shards-calculator'
 import { getObject, setObject } from '../../../shared/utils/local-storage'
 import {
+  areArraysEqual,
   concatArrayToNumber,
   hasDataSavedInLocalStorage,
 } from '../../../shared/utils/helpers'
@@ -116,7 +117,7 @@ export class HeroComponent implements OnInit {
     const associativeValuesArray: number[] = []
     let heroValue: number = 0
 
-    for (let i = 0; i <= nodeIndex; i++) {
+    for (let i = 0; i <= Object.keys(values).length - 1; i++) {
       let value: number = 0
 
       for (let j = 0; j < values[i]; j++) {
@@ -142,6 +143,7 @@ export class HeroComponent implements OnInit {
     for (let i = 0; i < nodeIndex; i++) {
       let patchValue: number
 
+      if (!this.shouldUpdateNode(nodeIndex, i)) break
       if (i === 2 || i === 5 || i === 8 || i === 11) {
         patchValue = 10
       } else {
@@ -153,8 +155,49 @@ export class HeroComponent implements OnInit {
 
     // Update next nodes by setting the minimum value
     for (let i = 11; i > nodeIndex; i--) {
+      if (!this.shouldUpdateNode(nodeIndex, i)) break
+
       this.dynamicModel.get(`${heroIndex}.nodes.${i}`)?.patchValue(0)
     }
+  }
+
+  shouldUpdateNode(nodeIndex: number, loopIndex: number): boolean {
+    const associativeArray: number[][] = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [9, 10, 11],
+    ]
+
+    let nodeIndexIndexInAssociativeArray: number
+    let loopIndexIndexInAssociativeArray: number
+
+    const nodeIndexArrayReference: number[] | undefined = associativeArray.find(
+      (x: number[], index: number) =>
+        associativeArray[index].indexOf(nodeIndex) > -1
+    )
+    const loopIndexArrayReference: number[] | undefined = associativeArray.find(
+      (x: number[], index: number) =>
+        associativeArray[index].indexOf(loopIndex) > -1
+    )
+
+    associativeArray.forEach((value: number[], index: number) => {
+      const nodeIndexComparison: boolean = areArraysEqual(
+        associativeArray[index],
+        nodeIndexArrayReference!
+      )
+      const loopIndexComparison: boolean = areArraysEqual(
+        associativeArray[index],
+        loopIndexArrayReference!
+      )
+
+      if (nodeIndexComparison) nodeIndexIndexInAssociativeArray = index
+      if (loopIndexComparison) loopIndexIndexInAssociativeArray = index
+    })
+
+    return !(
+      nodeIndexIndexInAssociativeArray! === loopIndexIndexInAssociativeArray!
+    )
   }
 
   resetHero(index: number): void {

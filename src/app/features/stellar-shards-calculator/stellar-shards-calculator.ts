@@ -11,6 +11,7 @@ export interface StaticModel {
   V3: number | null
   V2: number | null
   V1: number | null
+  bag: number | null
 }
 
 export interface DynamicModel {
@@ -50,6 +51,7 @@ export const staticDefaultValues: StaticModel = {
   V3: null,
   V2: null,
   V1: null,
+  bag: null,
 }
 
 export const dynamicDefaultValuesNodes: number[] = [

@@ -7,7 +7,7 @@
     <h1 class="d-flex align-items-center me-5" matTooltip="Stellar shards count">
       <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
            width="24"/>
-      <span>Total: {{ totalSSCount }}</span>
+      <span>Total: {{ totalSSCount | number: '1.' }}</span>
     </h1>
     <h1 class="d-flex align-items-center me-5" matTooltip="Hero count">
       <img class="d-inline-block me-2" src="assets/images/resources/hero.png" alt="Stellar shards" width="24"/>
@@ -32,7 +32,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V4 * StellarCountValues.V4 | json }}</span>
+              class="position-relative">{{ formControlModel.value.staticModel.V4 * StellarCountValues.V4 | number: '1.' }}</span>
           </span>
         </div>
         <div class="entry d-flex flex-column">
@@ -45,7 +45,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V3 * StellarCountValues.V3 | json }}</span>
+              class="position-relative">{{ formControlModel.value.staticModel.V3 * StellarCountValues.V3 | number: '1.' }}</span>
           </span>
         </div>
         <div class="entry d-flex flex-column">
@@ -58,7 +58,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V2 * StellarCountValues.V2 | json }}</span>
+              class="position-relative">{{ formControlModel.value.staticModel.V2 * StellarCountValues.V2 | number: '1.' }}</span>
           </span>
         </div>
         <div class="entry d-flex flex-column">
@@ -71,7 +71,20 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V1 * StellarCountValues.V1 | json }}</span>
+              class="position-relative">{{ formControlModel.value.staticModel.V1 * StellarCountValues.V1 | number: '1.' }}</span>
+          </span>
+        </div>
+        <div class="entry d-flex flex-column">
+          <mat-form-field appearance="fill">
+            <mat-label>Bag</mat-label>
+            <input type="number" placeholder="Number" matInput formControlName="bag" (change)="onSubmit()"
+                   min="0">
+          </mat-form-field>
+          <span>
+            <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
+                 width="24"/>
+            <span
+              class="position-relative">{{ formControlModel.value.staticModel.bag | number: '1.' }}</span>
           </span>
         </div>
       </div>

@@ -2,7 +2,7 @@
   <div class="row" formArrayName="dynamicModel">
     <div class="col-3 my-5 text-center" *ngFor="let hero of dynamicModel.controls; let i = index">
       <div class="advanced-view position-relative" [formGroupName]="i">
-        <input type="text" id="hero-{{ i }}" class="name position-absolute py-2 px-3" [placeholder]="i"
+        <input type="text" id="hero-{{ i }}" class="name position-absolute py-2 px-3" placeholder="Hero"
                formControlName="name" (change)="updateName(i)"/>
         <button type="button" class="remove-hero position-absolute" mat-mini-fab color="primary"
                 aria-label="Remove hero" (click)="removeHero(i)">
@@ -17,7 +17,7 @@
           <!-- VO -->
           <div class="area v0-hp position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
-                 (click)="V0HP.focus()"/>
+                 (click)="V0HP.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="0" (change)="onSubmit(i, 0)" min="0" max="30" #V0HP/>
@@ -25,7 +25,7 @@
           </div>
           <div class="area v0-atk position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation2.png" alt="HP/ATK" width="30"
-                 (click)="V0ATK.focus()"/>
+                 (click)="V0ATK.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="1" (change)="onSubmit(i, 1)" min="0" max="30" #V0ATK/>
@@ -33,7 +33,7 @@
           </div>
           <div class="area v0-hp-atk position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation14.png" alt="ATK" width="30"
-                 (click)="V0HPATK.focus()"/>
+                 (click)="V0HPATK.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="2" (change)="onSubmit(i, 2)" min="0" max="10" #V0HPATK/>
@@ -42,7 +42,7 @@
           <!-- V1-->
           <div class="area v1-hp position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
-                 (click)="V1HP.focus()"/>
+                 (click)="V1HP.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="3" (change)="onSubmit(i, 3)" min="0" max="30" #V1HP/>
@@ -50,7 +50,7 @@
           </div>
           <div class="area v1-atk position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"
-                 (click)="V1ATK.focus()"/>
+                 (click)="V1ATK.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="4" (change)="onSubmit(i, 4)" min="0" max="30" #V1ATK/>
@@ -58,7 +58,7 @@
           </div>
           <div class="area v1-hp-atk position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"
-                 (click)="V1HPATK.focus()"/>
+                 (click)="V1HPATK.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="5" (change)="onSubmit(i, 5)" min="0" max="10" #V1HPATK/>
@@ -67,7 +67,7 @@
           <!-- V2 -->
           <div class="area v2-hp position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
-                 (click)="V2HP.focus()"/>
+                 (click)="V2HP.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="6" (change)="onSubmit(i, 6)" min="0" max="30" #V2HP/>
@@ -75,7 +75,7 @@
           </div>
           <div class="area v2-atk position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation2.png" alt="ATK" width="30"
-                 (click)="V2ATK.focus()"/>
+                 (click)="V2ATK.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="7" (change)="onSubmit(i, 7)" min="0" max="30" #V2ATK/>
@@ -83,7 +83,7 @@
           </div>
           <div class="area v2-hp-atk position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation14.png" alt="HP/ATK" width="30"
-                 (click)="V2HPATK.focus()"/>
+                 (click)="V2HPATK.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="8" (change)="onSubmit(i, 8)" min="0" max="10" #V2HPATK/>
@@ -92,7 +92,7 @@
           <!-- V3 -->
           <div class="area v3-hp position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation1.png" alt="HP" width="30"
-                 (click)="V3HP.focus()"/>
+                 (click)="V3HP.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="9" (change)="onSubmit(i, 9)" min="0" max="30" #V3HP/>
@@ -100,7 +100,7 @@
           </div>
           <div class="area v3-atk position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation1.png" alt="ATK" width="30"
-                 (click)="V3ATK.focus()"/>
+                 (click)="V3ATK.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="10" (change)="onSubmit(i, 10)" min="0" max="30" #V3ATK/>
@@ -108,7 +108,7 @@
           </div>
           <div class="area v3-spd position-absolute cursor-pointer">
             <img src="assets/images/resources/hero_icon_activation1.png" alt="SPD" width="30"
-                 (click)="V3SPD.focus()"/>
+                 (click)="V3SPD.select()"/>
             <span class="node-value position-relative">
                   <input id="V0-HP-{{i}}" type="number" class="value text-center" placeholder="0"
                          formControlName="11" (change)="onSubmit(i, 11)" min="0" max="10" #V3SPD/>
@@ -116,8 +116,8 @@
           </div>
         </div>
         <p class="mt-5">
-          <span>{{ SSCountArray[i] || 0 }} </span>
-          <span>/ 4.935.000</span>
+          <span>{{ (SSCountArray[i] | number: '1.') || 0 }} </span>
+          <span>/ {{ 4935000 | number: '1.' }}</span>
         </p>
       </div>
     </div>
