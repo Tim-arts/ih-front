@@ -67,8 +67,6 @@ export class HeroComponent implements OnInit {
 
     setTimeout(() => {
       this.calculateHeroStellarShards(heroIndex, nodeIndex)
-      this.updateTotalSS()
-
       this.onSubmitValue.emit(this.totalSSCount)
     }, 0)
   }
@@ -136,6 +134,7 @@ export class HeroComponent implements OnInit {
       values: values,
       name: name,
     })
+    this.updateTotalSS()
   }
 
   updateNodes(heroIndex, nodeIndex): void {
