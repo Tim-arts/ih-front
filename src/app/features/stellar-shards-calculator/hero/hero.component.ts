@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+} from '@angular/core'
 import {
   FormArray,
   FormBuilder,
@@ -36,7 +45,9 @@ export class HeroComponent implements OnInit {
   SSCountArray: number[] = []
 
   @Input() formArrayName!: string
-  @Output() onSubmitValue = new EventEmitter<number | null>()
+  @Output() onSubmitValue: EventEmitter<number | null> = new EventEmitter<
+    number | null
+  >()
 
   constructor(
     private formBuilder: FormBuilder,
@@ -110,7 +121,7 @@ export class HeroComponent implements OnInit {
     setObject(KEY_LOCALSTORAGE, dataFromLocalStorage)
   }
 
-  updateTotalSS() {
+  updateTotalSS(): void {
     this.totalSSCount = concatArrayToNumber(this.SSCountArray)
   }
 

@@ -1,6 +1,7 @@
 <ng-container [formGroup]="formRoot">
   <div class="row" formArrayName="dynamicModel">
-    <div class="col-3 my-5 text-center" *ngFor="let hero of dynamicModel.controls; let i = index">
+    <div class="col-3 my-5 text-center" *ngFor="let hero of dynamicModel.controls; let i = index"
+         [name]="dynamicModel.controls[i].value.name" setBackgroundImage>
       <div class="advanced-view position-relative" [formGroupName]="i">
         <input type="text" id="hero-{{ i }}" class="name position-absolute py-2 px-3" placeholder="Hero"
                formControlName="name" (change)="updateName(i)"/>
@@ -119,6 +120,7 @@
           <span>{{ (SSCountArray[i] | number: '1.') || 0 }} </span>
           <span>/ {{ 4935000 | number: '1.' }}</span>
         </p>
+        <div class="cover position-absolute"></div>
       </div>
     </div>
     <div class="col-3 my-5">
