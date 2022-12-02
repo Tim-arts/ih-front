@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 
 import {
-  dynamicDefaultValues,
   localStorageModel,
   staticDefaultValues,
   StaticModel,
@@ -29,7 +28,10 @@ export class StellarShardsCalculatorComponent implements OnInit {
   totalSSDynamic: number = 0
   StellarCountValues = StellarCountValues
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -39,6 +41,10 @@ export class StellarShardsCalculatorComponent implements OnInit {
         this.updateHeroCount()
       }
     }, 0)
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges()
   }
 
   onSubmit(): void {

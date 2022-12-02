@@ -13,7 +13,6 @@ import {
   localStorageDynamicModel,
   localStorageModel,
   nodeValues,
-  StellarCountValues,
 } from '../stellar-shards-calculator'
 import { getObject, setObject } from '../../../shared/utils/local-storage'
 import {
@@ -33,7 +32,6 @@ export class HeroComponent implements OnInit {
   formRoot!: FormGroup
   dynamicModel!: FormArray
 
-  StellarCountValues = StellarCountValues
   totalSSCount: number = 0
   SSCountArray: number[] = []
 
@@ -86,8 +84,14 @@ export class HeroComponent implements OnInit {
   }
 
   addHero(): void {
-    this.loadDefaultModel(dynamicDefaultValues)
+    const dataFromLocalStorage: localStorageModel = getObject(KEY_LOCALSTORAGE)
+    const defaultValue = dynamicDefaultValues
+
+    this.loadDefaultModel(defaultValue)
     this.onSubmitValue.emit(null)
+    dataFromLocalStorage.dynamicModel!.push(defaultValue[0])
+
+    setObject(KEY_LOCALSTORAGE, dataFromLocalStorage)
   }
 
   removeHero(index: number): void {
@@ -96,6 +100,9 @@ export class HeroComponent implements OnInit {
     this.dynamicModel.removeAt(index)
     this.onSubmitValue.emit(null)
     this.SSCountArray.splice(index, 1)
+
+    this.updateTotalSS()
+    this.onSubmitValue.emit(this.totalSSCount)
 
     if (!dataFromLocalStorage) return
 
@@ -113,7 +120,6 @@ export class HeroComponent implements OnInit {
     )?.value
     const name: string = this.dynamicModel.get(`${heroIndex}.name`)?.value
     const associativeValuesArray: number[] = []
-    let heroValue: number = 0
 
     for (let i = 0; i <= Object.keys(values).length - 1; i++) {
       let value: number = 0
@@ -125,9 +131,7 @@ export class HeroComponent implements OnInit {
       associativeValuesArray.push(value)
     }
 
-    heroValue = concatArrayToNumber(associativeValuesArray)
-
-    this.SSCountArray[heroIndex] = heroValue
+    this.SSCountArray[heroIndex] = concatArrayToNumber(associativeValuesArray)
     this.saveToLocalStorage({
       heroIndex: heroIndex,
       nodeIndex: nodeIndex,
@@ -168,8 +172,8 @@ export class HeroComponent implements OnInit {
       [9, 10, 11],
     ]
 
-    let nodeIndexIndexInAssociativeArray: number
-    let loopIndexIndexInAssociativeArray: number
+    let nodeIndexInAssociativeArray: number
+    let loopIndexInAssociativeArray: number
 
     const nodeIndexArrayReference: number[] | undefined = associativeArray.find(
       (x: number[], index: number) =>
@@ -190,13 +194,11 @@ export class HeroComponent implements OnInit {
         loopIndexArrayReference!
       )
 
-      if (nodeIndexComparison) nodeIndexIndexInAssociativeArray = index
-      if (loopIndexComparison) loopIndexIndexInAssociativeArray = index
+      if (nodeIndexComparison) nodeIndexInAssociativeArray = index
+      if (loopIndexComparison) loopIndexInAssociativeArray = index
     })
 
-    return !(
-      nodeIndexIndexInAssociativeArray! === loopIndexIndexInAssociativeArray!
-    )
+    return !(nodeIndexInAssociativeArray! === loopIndexInAssociativeArray!)
   }
 
   resetHero(index: number): void {

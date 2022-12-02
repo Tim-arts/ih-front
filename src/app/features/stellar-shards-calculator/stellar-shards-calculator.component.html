@@ -5,8 +5,7 @@
       <p class="mb-5">Complete the fields to automatically calculate the number of stellar shards that you have</p>
     </div>
     <h1 class="d-flex align-items-center me-5" matTooltip="Stellar shards count">
-      <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
-           width="24"/>
+      <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards" width="24"/>
       <span>Total: {{ totalSSCount | number: '1.' }}</span>
     </h1>
     <h1 class="d-flex align-items-center me-5" matTooltip="Hero count">
@@ -25,8 +24,7 @@
         <div class="entry d-flex flex-column">
           <mat-form-field appearance="fill">
             <mat-label>V4</mat-label>
-            <input type="number" placeholder="Number" matInput formControlName="V4" (change)="onSubmit()"
-                   min="0">
+            <input type="number" placeholder="Number" matInput formControlName="V4" (change)="onSubmit()" min="0">
           </mat-form-field>
           <span>
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
@@ -38,8 +36,7 @@
         <div class="entry d-flex flex-column">
           <mat-form-field appearance="fill">
             <mat-label>V3</mat-label>
-            <input type="number" placeholder="Number" matInput formControlName="V3" (change)="onSubmit()"
-                   min="0">
+            <input type="number" placeholder="Number" matInput formControlName="V3" (change)="onSubmit()" min="0">
           </mat-form-field>
           <span>
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
@@ -51,8 +48,7 @@
         <div class="entry d-flex flex-column">
           <mat-form-field appearance="fill">
             <mat-label>V2</mat-label>
-            <input type="number" placeholder="Number" matInput formControlName="V2" (change)="onSubmit()"
-                   min="0">
+            <input type="number" placeholder="Number" matInput formControlName="V2" (change)="onSubmit()" min="0">
           </mat-form-field>
           <span>
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
@@ -64,8 +60,7 @@
         <div class="entry d-flex flex-column">
           <mat-form-field appearance="fill">
             <mat-label>V1</mat-label>
-            <input type="number" placeholder="Number" matInput formControlName="V1" (change)="onSubmit()"
-                   min="0">
+            <input type="number" placeholder="Number" matInput formControlName="V1" (change)="onSubmit()" min="0">
           </mat-form-field>
           <span>
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
@@ -77,14 +72,12 @@
         <div class="entry d-flex flex-column">
           <mat-form-field appearance="fill">
             <mat-label>Bag</mat-label>
-            <input type="number" placeholder="Number" matInput formControlName="bag" (change)="onSubmit()"
-                   min="0">
+            <input type="number" placeholder="Number" matInput formControlName="bag" (change)="onSubmit()" min="0">
           </mat-form-field>
           <span>
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
-            <span
-              class="position-relative">{{ (formControlModel.value.staticModel.bag | number: '1.') || 0 }}</span>
+            <span class="position-relative">{{ (formControlModel.value.staticModel.bag | number: '1.') || 0 }}</span>
           </span>
         </div>
       </div>
