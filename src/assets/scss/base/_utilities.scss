@@ -1,9 +1,11 @@
+@use '../abstracts/colors' as colors;
+
 .spacer {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 .pointer-events-none {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .cursor-pointer {
@@ -23,9 +25,17 @@
 }
 
 .icon-large {
-  $size: 4.8rem;
+    $size: 4.8rem;
 
-  width: $size !important;
-  height: $size !important;
-  font-size: $size !important;
+    width: $size !important;
+    height: $size !important;
+    font-size: $size !important;
+}
+
+.text-purple {
+    color: colors.$primary;
+}
+
+.text-green {
+    color: colors.$secondary;
 }

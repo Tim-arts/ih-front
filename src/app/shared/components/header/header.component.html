@@ -1,10 +1,23 @@
 <header>
   <mat-toolbar class="mat-toolbar mat-primary mat-toolbar-single-row">
     <span>Idle Heroes - Tools</span>
-    <span class="spacer"></span>
+    <nav>
+      <ul class="d-flex">
+        <li class="mx-2">
+          <a class="d-flex position-relative" routerLink="/stellar-shards-calculator" routerLinkActive="active"><img
+            src="./assets/images/resources/stellar-shard.png"
+            alt="Stellar shard" width="40"/></a>
+        </li>
+        <li class="mx-2">
+          <a class="d-flex position-relative" routerLink="/essence-calculator" routerLinkActive="active"><img
+            src="./assets/images/resources/hero_equipment_icon_change.png"
+            alt="Essence" width="40"/></a>
+        </li>
+      </ul>
+    </nav>
     <span class="credits d-flex flex-column text-end">
-      <span>version 1.2</span>
-      <p class="mb-0">By Dethroy & Alinna</p>
+      <span>version 1.2 <small>(December 2022)</small></span>
+      <small class="mb-0 text-green">By Dethroy & Alinna</small>
     </span>
   </mat-toolbar>
 </header>

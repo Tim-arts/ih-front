@@ -6,6 +6,7 @@ import { AppComponent } from './app.component'
 
 import { SharedModule } from './shared/shared.module'
 import { StellarShardsCalculatorModule } from './features/stellar-shards-calculator/stellar-shards-calculator.module'
+import { EssenceCalculatorModule } from './features/essence-calculator/essence-calculator.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { StellarShardsCalculatorModule } from './features/stellar-shards-calcula
     AppRoutingModule,
     SharedModule,
     StellarShardsCalculatorModule,
+    EssenceCalculatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

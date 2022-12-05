@@ -125,10 +125,10 @@ export class StellarShardsCalculatorComponent implements OnInit {
           _value *= this.StellarCountValues.V1
           break
         case 4:
-          _value
+          _value *= this.StellarCountValues.V0
           break
         default:
-          console.warn(`Data doesn't fit to any case`)
+          console.warn(index, `Data doesn't fit to any case`)
       }
 
       value += _value
