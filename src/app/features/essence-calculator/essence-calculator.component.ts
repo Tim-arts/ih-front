@@ -23,4 +23,14 @@ export class EssenceCalculatorComponent {
     if ($event.totalGold || $event.totalGold === 0)
       this.totalGold = $event.totalGold
   }
+
+  resetForm(): void {
+    const result = confirm(
+      'Resetting the form will delete all current input data, are you sure to proceed?'
+    )
+
+    if (result) {
+      window.location.reload()
+    }
+  }
 }
