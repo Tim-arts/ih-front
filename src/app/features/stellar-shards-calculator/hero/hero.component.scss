@@ -48,6 +48,7 @@ $area-size: 3rem;
     border-radius: $border-radius;
     top: 6px;
     left: 6px;
+    text-overflow: ellipsis;
     transition: background-color .1s ease, border .1s ease;
     will-change: background-color, border;
 

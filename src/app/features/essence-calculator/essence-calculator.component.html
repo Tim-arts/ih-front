@@ -1,8 +1,21 @@
 <section class="container">
   <div class="d-flex justify-content-between">
     <div class="d-flex flex-column">
-      <h1>Essence calculator</h1>
+      <h1>Tree level - Essence calculator</h1>
       <p class="mb-5">Complete the fields to automatically calculate the number of resources needed</p>
     </div>
+    <h1 class="d-flex align-items-center me-5" matTooltip="Stellar shards count">
+      <img class="d-inline-block me-2" src="./assets/images/resources/stellar-shard.png" alt="Stellar shards"
+           width="24"/>
+      <span>Total: {{ totalSSCount | number: '1.' }}</span>
+    </h1>
+    <h1 class="d-flex align-items-center me-5" matTooltip="Hero count">
+      <img class="d-inline-block me-2" src="./assets/images/resources/spiritual-essence.webp" alt="Stellar shards"
+           width="24"/>
+      <span>Total: {{ totalSpiritualEssence }}</span>
+    </h1>
+  </div>
+  <div class="input-level-parent py-5">
+    <input-level (onUpdate)="update($event)"></input-level>
   </div>
 </section>

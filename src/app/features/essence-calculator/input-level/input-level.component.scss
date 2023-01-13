@@ -1,0 +1,46 @@
+.input-level-container {
+    $size: 180px;
+
+    input[type="number"] {
+        background-color: rgba(255, 255, 255, .01);
+        font-size: 4.8rem;
+        width: $size;
+        height: $size;
+        border: none;
+        border-radius: 8px;
+        -moz-appearance: textfield;
+
+        &:focus, &:active {
+            outline: none;
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .05);
+        }
+
+        & + label {
+            width: $size;
+        }
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+}
+
+.characteristics {
+    gap: 10px;
+
+    .characteristic-name {
+        display: inline-block;
+        margin-left: .5rem;
+    }
+
+    > * {
+        background-color: rgba(255, 255, 255, .01);
+        border-radius: 8px;
+    }
+}

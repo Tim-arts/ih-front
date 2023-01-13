@@ -1,0 +1,42 @@
+<div class="characteristics d-flex mb-5">
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/hero_icon_atk.png" alt="ATK" width="24"/>
+      <span class="characteristic-name">ATK</span>
+    </div>
+    <div class="d-flex align-items-center">{{ ATK }}</div>
+  </div>
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/hero_icon_life.png" alt="HP" width="24"/>
+      <span class="characteristic-name">HP</span>
+    </div>
+    <div class="d-flex align-items-center">{{ HP }}</div>
+  </div>
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/spiritual-essence.webp" alt="Spiritual Essence" width="24"/>
+      <span class="characteristic-name">SE</span>
+    </div>
+    <div class="d-flex align-items-center">{{ SE }}</div>
+  </div>
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/stellar-shard.png" alt="Stellar" width="24"/>
+      <span class="characteristic-name">SS</span>
+    </div>
+    <div class="d-flex align-items-center">{{ SS }}</div>
+  </div>
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/hero.png" alt="Hero" width="24"/>
+      <span class="characteristic-name">Max Hero Level</span>
+    </div>
+    <div class="d-flex align-items-center">{{ maxHeroLevel }}</div>
+  </div>
+</div>
+<div class="input-level-container text-center">
+  <input id="input-level" name="input-level" class="text-center text-white" type="number" value="0"
+         (wheel)="wheelUpdate($event)" (change)="change($event)" min="0" max="120"/>
+  <label class="pt-3 d-block mx-auto" for="input-level">Tree level</label>
+</div>
