@@ -48,7 +48,16 @@ export class InputLevelComponent {
   }
 
   change($event: Event) {
-    const value: number = Number(($event.target as HTMLInputElement)?.value)
+    const target: HTMLInputElement = $event.target as HTMLInputElement
+    const max = Number(target.max)
+    const min = Number(target.min)
+    let value: number = Number(target.value)
+
+    if (value > 120) value = max
+    if (value < 0) value = min
+
+    target.value = String(value)
+
     this.updateUI(value)
   }
 
