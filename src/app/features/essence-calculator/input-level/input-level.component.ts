@@ -57,8 +57,8 @@ export class InputLevelComponent {
     const min = Number(target.min)
     let value: number = Number(target.value)
 
-    if (value > 120) value = max
-    if (value < 0) value = min
+    if (value > max) value = max
+    if (value < min) value = min
 
     target.value = String(value)
 
@@ -165,8 +165,8 @@ export class InputLevelComponent {
     const min = Number(target.min)
     let value: number = Number(target.value)
 
-    if (value > 100) value = max
-    if (value < 0) value = min
+    if (value > max) value = max
+    if (value < min) value = min
 
     target.value = String(value)
 
