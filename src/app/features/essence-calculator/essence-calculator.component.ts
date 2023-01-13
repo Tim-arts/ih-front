@@ -10,9 +10,17 @@ import { TreeLevelModel } from './input-level/input-level'
 export class EssenceCalculatorComponent {
   totalSSCount: number = 0
   totalSpiritualEssence: number = 0
+  totalSpirit: number = 0
+  totalGold: number = 0
 
   update($event: TreeLevelModel): void {
-    this.totalSSCount = $event.totalSS
-    this.totalSpiritualEssence = $event.totalSE
+    if ($event.totalSS || $event.totalSS === 0)
+      this.totalSSCount = $event.totalSS
+    if ($event.totalSE || $event.totalSE === 0)
+      this.totalSpiritualEssence = $event.totalSE
+    if ($event.totalSpirit || $event.totalSpirit === 0)
+      this.totalSpirit = $event.totalSpirit
+    if ($event.totalGold || $event.totalGold === 0)
+      this.totalGold = $event.totalGold
   }
 }

@@ -1,4 +1,4 @@
-<div class="characteristics d-flex mb-5">
+<div class="characteristics d-flex mb-3">
   <div class="d-flex flex p-4 justify-content-between">
     <div class="d-flex align-items-center">
       <img src="assets/images/resources/hero_icon_atk.png" alt="ATK" width="24"/>
@@ -34,9 +34,46 @@
     </div>
     <div class="d-flex align-items-center">{{ maxHeroLevel }}</div>
   </div>
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/10-star.webp" alt="10 Stars" width="24"/>
+      <span class="characteristic-name">10 Stars</span>
+    </div>
+    <div class="d-flex align-items-center">{{ tenStars }}</div>
+  </div>
 </div>
-<div class="input-level-container text-center">
-  <input id="input-level" name="input-level" class="text-center text-white" type="number" value="0"
-         (wheel)="wheelUpdate($event)" (change)="change($event)" min="0" max="120"/>
-  <label class="pt-3 d-block mx-auto" for="input-level">Tree level</label>
+<div class="resources d-flex mb-3">
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/gold.webp" alt="Gold" width="24"/>
+      <span class="characteristic-name">Gold</span>
+    </div>
+    <div class="d-flex align-items-center">{{ gold | number: '1.' }}</div>
+  </div>
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/goo.webp" alt="Spirit" width="24"/>
+      <span class="characteristic-name">Spirit</span>
+    </div>
+    <div class="d-flex align-items-center">{{ spirit | number: '1.' }}</div>
+  </div>
+  <div class="d-flex flex p-4 justify-content-between">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/resources/x-stone.webp" alt="X-Stone" width="24"/>
+      <span class="characteristic-name">X-Stone</span>
+    </div>
+    <div class="d-flex align-items-center">{{ xStone }}</div>
+  </div>
+</div>
+<div class="d-flex input-level-container text-center justify-content-center">
+  <div>
+    <input id="tree-level" name="tree-level" class="text-center text-white" type="number" value="0"
+           (wheel)="wheelUpdateCharacteristics($event)" (change)="updateCharacteristics($event)" min="0" max="120"/>
+    <label class="pt-3 d-block mx-auto" for="tree-level">Tree level</label>
+  </div>
+  <div>
+    <input id="awakening-level" name="awakening-level" class="text-center text-white" type="number" value="0"
+           (wheel)="wheelUpdateResources($event)" (change)="updateResources($event)" min="0" max="100"/>
+    <label class="pt-3 d-block mx-auto" for="awakening-level">Awakening level</label>
+  </div>
 </div>
