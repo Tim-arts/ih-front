@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms'
 
 import {
   localStorageModel,
@@ -18,7 +18,7 @@ const KEY_LOCALSTORAGE: string = 'idle-heroes-ss-calculator'
   styleUrls: ['./stellar-shards-calculator.component.scss'],
 })
 export class StellarShardsCalculatorComponent implements OnInit {
-  formControlModel: FormGroup = this.formBuilder.group({
+  formControlModel: UntypedFormGroup = this.formBuilder.group({
     staticModel: this.formBuilder.group(staticDefaultValues),
     dynamicModel: this.formBuilder.array([]),
   })
@@ -29,7 +29,7 @@ export class StellarShardsCalculatorComponent implements OnInit {
   StellarCountValues = StellarCountValues
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private cdr: ChangeDetectorRef
   ) {}
 

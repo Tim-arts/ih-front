@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import {
-  FormArray,
-  FormBuilder,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   FormGroupDirective,
 } from '@angular/forms'
 
@@ -29,8 +29,8 @@ const KEY_LOCALSTORAGE: string = 'idle-heroes-ss-calculator'
   styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent implements OnInit {
-  formRoot!: FormGroup
-  dynamicModel!: FormArray
+  formRoot!: UntypedFormGroup
+  dynamicModel!: UntypedFormArray
 
   totalSSCount: number = 0
   SSCountArray: number[] = []
@@ -41,13 +41,13 @@ export class HeroComponent implements OnInit {
   >()
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private formGroupDirective: FormGroupDirective
   ) {}
 
   ngOnInit(): void {
     this.formRoot = this.formGroupDirective.control
-    this.dynamicModel = this.formRoot.get(this.formArrayName) as FormArray
+    this.dynamicModel = this.formRoot.get(this.formArrayName) as UntypedFormArray
 
     if (
       hasDataSavedInLocalStorage() &&
@@ -72,13 +72,13 @@ export class HeroComponent implements OnInit {
   }
 
   loadDefaultModel(data: DynamicModel[]): void {
-    const control = <FormArray>this.dynamicModel
+    const control = <UntypedFormArray>this.dynamicModel
     data.forEach((x: DynamicModel) => {
       control.push(this.patchValues(x.name, x.nodes))
     })
   }
 
-  patchValues(name, nodes): FormGroup {
+  patchValues(name, nodes): UntypedFormGroup {
     return this.formBuilder.group({
       name: [name],
       nodes: this.formBuilder.group(nodes),
@@ -208,7 +208,7 @@ export class HeroComponent implements OnInit {
   }
 
   loadDataFromLocalStorage(): void {
-    const control = <FormArray>this.dynamicModel
+    const control = <UntypedFormArray>this.dynamicModel
     const data: DynamicModel[] = getObject(KEY_LOCALSTORAGE).dynamicModel
 
     data.forEach((x: DynamicModel) => {
