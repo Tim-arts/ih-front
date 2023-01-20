@@ -1,0 +1,9 @@
+@use '../scss/abstracts/colors' as colors;
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    color: transparentize(colors.$secondary, .6)
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: rgba(0, 0, 0, 0.15);
+}

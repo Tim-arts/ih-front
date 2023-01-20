@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { StellarShardsCalculatorComponent } from './features/stellar-shards-calculator/stellar-shards-calculator.component'
 import { EssenceCalculatorComponent } from './features/essence-calculator/essence-calculator.component'
+import { VIPLevelsComponent } from './features/vip-levels/vip-levels.component'
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'essence-calculator',
     component: EssenceCalculatorComponent,
+  },
+  {
+    path: 'vip-levels',
+    component: VIPLevelsComponent,
   },
 ]
 

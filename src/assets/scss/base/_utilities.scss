@@ -33,11 +33,11 @@
 }
 
 .text-purple {
-    color: colors.$primary;
+    color: colors.$primary !important;
 }
 
 .text-green {
-    color: colors.$secondary;
+    color: colors.$secondary !important;
 }
 
 .flex {
