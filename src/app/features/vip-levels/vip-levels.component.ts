@@ -1,25 +1,56 @@
-import { Component } from '@angular/core'
+import { Component, ViewEncapsulation } from '@angular/core'
+import { CommonModule } from '@angular/common'
+
+import { SafeHTMLPipe } from '../../pipes/safe-html.pipe'
+
+import {
+  AddedHeroToBag,
+  CasinoRollsBonus,
+  EventRaidBonus,
+  HandOfMidasBonus,
+  HeroicSummonsBonus,
+  ResourcesBonus,
+  TavernQuestsBonus,
+  Titles,
+  USDCosts,
+  VIPPoints,
+} from './vip-levels'
 
 @Component({
+  standalone: true,
   selector: 'vip-levels',
   templateUrl: './vip-levels.component.html',
   styleUrls: ['./vip-levels.component.scss'],
+  imports: [CommonModule, SafeHTMLPipe],
+  encapsulation: ViewEncapsulation.None,
 })
 export class VIPLevelsComponent {
-  titles: string[] = [
-    'Cost (USD)',
-    'VIP Level',
-    'VIP Points Needed',
-    'Bonus, Gold, Spirit, Exp',
-    'Hand of Midas Bonus',
-    'Added Hero Bag Size',
-    '10 for 8 Casino Rolls',
-    '100 Heroic Summons Bonus 5*',
-    'Tavern Quests Daily',
-    'Event Raid Buys',
-  ]
-  USDCost: number[] = [
-    0, 7, 14, 28, 63, 151.2, 378, 945, 2079, 3742.2, 5987.52, 8981.28, 13471.92,
-    20207.88,
-  ]
+  titles: string[] = Titles
+
+  generateCell(index: number): string {
+    return `
+      <tr>
+        <th scope="row">${USDCosts[index]}</th>
+        <td>${index}</td>
+        <td>${VIPPoints[index]}</td>
+        <td>${ResourcesBonus[index]}</td>
+        <td>${HandOfMidasBonus[index]}</td>
+        <td>${AddedHeroToBag[index]}</td>
+        <td>${CasinoRollsBonus[index]}</td>
+        <td>${HeroicSummonsBonus[index]}</td>
+        <td>${TavernQuestsBonus[index]}</td>
+        <td>${EventRaidBonus[index]}</td>
+      </tr>
+    `
+  }
+
+  generateArray() {
+    const value: string[] = []
+
+    for (let i = 0, count = 14; i < count; i++) {
+      value.push(this.generateCell(i))
+    }
+
+    return value.join('')
+  }
 }

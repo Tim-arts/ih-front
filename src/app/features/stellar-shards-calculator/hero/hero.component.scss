@@ -40,6 +40,7 @@ $area-size: 3rem;
 }
 
 .name {
+    font-size: 12px;
     color: white;
     width: fit-content;
     max-width: 70px;
@@ -144,7 +145,7 @@ $area-size: 3rem;
 }
 
 .node-value {
-    top: -1rem;
+    top: -.5rem;
     left: .1rem;
 
     input[type="number"] {
@@ -196,4 +197,8 @@ $area-size: 3rem;
 
 .reset-hero {
     right: 30px;
+}
+
+.ss-total {
+    font-size: 14px;
 }

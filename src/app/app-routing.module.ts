@@ -7,11 +7,6 @@ import { VIPLevelsComponent } from './features/vip-levels/vip-levels.component'
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/stellar-shards-calculator',
-    pathMatch: 'full',
-  },
-  {
     path: 'stellar-shards-calculator',
     component: StellarShardsCalculatorComponent,
   },
@@ -22,6 +17,11 @@ const routes: Routes = [
   {
     path: 'vip-levels',
     component: VIPLevelsComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/stellar-shards-calculator',
+    pathMatch: 'full',
   },
 ]
 

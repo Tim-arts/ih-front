@@ -1,7 +1,7 @@
 <section class="container">
   <div class="d-flex justify-content-between">
     <div class="d-flex flex-column">
-      <h1>Stellar Shards Calculator</h1>
+      <h1 class="mb-0">Stellar Shards Calculator</h1>
       <p class="mb-5">Complete the fields to automatically calculate the number of stellar shards that you have</p>
     </div>
     <h1 class="d-flex align-items-center me-5" matTooltip="Stellar shards count">
@@ -30,7 +30,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V4 * StellarCountValues.V4 | number: '1.' }}</span>
+              class="ss-value position-relative">{{ formControlModel.value.staticModel.V4 * StellarCountValues.V4 | number: '1.' }}</span>
           </span>
         </div>
         <div class="entry d-flex flex-column">
@@ -42,7 +42,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V3 * StellarCountValues.V3 | number: '1.' }}</span>
+              class="ss-value position-relative">{{ formControlModel.value.staticModel.V3 * StellarCountValues.V3 | number: '1.' }}</span>
           </span>
         </div>
         <div class="entry d-flex flex-column">
@@ -54,7 +54,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V2 * StellarCountValues.V2 | number: '1.' }}</span>
+              class="ss-value position-relative">{{ formControlModel.value.staticModel.V2 * StellarCountValues.V2 | number: '1.' }}</span>
           </span>
         </div>
         <div class="entry d-flex flex-column">
@@ -66,7 +66,7 @@
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
             <span
-              class="position-relative">{{ formControlModel.value.staticModel.V1 * StellarCountValues.V1 | number: '1.' }}</span>
+              class="ss-value position-relative">{{ formControlModel.value.staticModel.V1 * StellarCountValues.V1 | number: '1.' }}</span>
           </span>
         </div>
         <div class="entry d-flex flex-column">
@@ -77,7 +77,8 @@
           <span>
             <img class="d-inline-block me-2" src="assets/images/resources/stellar-shard.png" alt="Stellar shards"
                  width="24"/>
-            <span class="position-relative">{{ (formControlModel.value.staticModel.bag | number: '1.') || 0 }}</span>
+            <span
+              class="ss-value position-relative">{{ (formControlModel.value.staticModel.bag | number: '1.') || 0 }}</span>
           </span>
         </div>
       </div>

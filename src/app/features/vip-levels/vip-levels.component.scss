@@ -1,5 +1,13 @@
 @use '../scss/abstracts/colors' as colors;
 
+.table-striped {
+    font-size: 14px;
+
+    .title {
+        color: white;
+    }
+}
+
 .table-striped > tbody > tr:nth-of-type(odd) > * {
     color: transparentize(colors.$secondary, .6)
 }
