@@ -4,6 +4,6 @@
     <tr>
       <td class="title" *ngFor="let title of titles">{{ title }}</td>
     </thead>
-    <tbody [innerHTML]="generateArray() | safeHTML"></tbody>
+    <tbody class="text-white" [innerHTML]="generateArray() | safeHTML"></tbody>
   </table>
 </section>
