@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { StellarShardsCalculatorComponent } from './features/stellar-shards-calculator/stellar-shards-calculator.component'
 import { EssenceCalculatorComponent } from './features/essence-calculator/essence-calculator.component'
 import { VIPLevelsComponent } from './features/vip-levels/vip-levels.component'
+import { MaximizingHoStatsComponent } from './features/maximizing-ho-stats/maximizing-ho-stats.component'
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'vip-levels',
     component: VIPLevelsComponent,
+  },
+  {
+    path: 'max-ho-stats',
+    component: MaximizingHoStatsComponent,
   },
   {
     path: '',
