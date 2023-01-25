@@ -5,6 +5,7 @@ import { StellarShardsCalculatorComponent } from './features/stellar-shards-calc
 import { EssenceCalculatorComponent } from './features/essence-calculator/essence-calculator.component'
 import { VIPLevelsComponent } from './features/vip-levels/vip-levels.component'
 import { MaximizingHoStatsComponent } from './features/maximizing-ho-stats/maximizing-ho-stats.component'
+import { PrioritySublimationsComponent } from './features/priority-sublimations/priority-sublimations.component'
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'max-ho-stats',
     component: MaximizingHoStatsComponent,
+  },
+  {
+    path: 'priority-sublimations',
+    component: PrioritySublimationsComponent,
   },
   {
     path: '',
