@@ -7,7 +7,7 @@ import { Component } from '@angular/core'
   styleUrls: ['./maximizing-ho-stats.component.scss'],
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
   ]
 })
 export class MaximizingHoStatsComponent {}
