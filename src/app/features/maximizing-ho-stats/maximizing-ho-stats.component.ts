@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core'
 
 @Component({
@@ -5,5 +6,8 @@ import { Component } from '@angular/core'
   templateUrl: './maximizing-ho-stats.component.html',
   styleUrls: ['./maximizing-ho-stats.component.scss'],
   standalone: true,
+  imports: [
+    NgOptimizedImage
+  ]
 })
 export class MaximizingHoStatsComponent {}
